@@ -34,10 +34,11 @@ public class ImageService {
 	@Transactional
 	public void ImageUpload(ImageUploadDto imageUploadDto, PrincipalDetails principalDetails) {
 		UUID uuid = UUID.randomUUID();
-		String imageFileName = uuid + "_";
+		String imageFileName = uuid + "_" + imageUploadDto.getFile().getOriginalFilename();
 		System.out.println("이미지 파일이름 : " + imageFileName);
 		// 통신 I/O -> 예외가 발생할 수 있다.
 		try {
+			/*
 			String encoded = new String(Base64.getUrlEncoder().encode(imageUploadDto.getFile().getOriginalFilename().getBytes()), "utf-8");
 			imageFileName += encoded;
 					
@@ -45,6 +46,8 @@ public class ImageService {
 			
 			byte[] decoded = Base64.getUrlDecoder().decode(encoded);
 			System.out.println("디코딩 : " + new String(decoded, StandardCharsets.UTF_8));
+			
+			*/
 			
 			Path imageFilePath = Paths.get(uploadFolder + imageFileName);
 			
